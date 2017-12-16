@@ -15,6 +15,8 @@ client目录---前台实现源代码；
 
 运行前您需要本地安装mongodb数据库，并新建一个数据库blog；
 
+找到/server/db/collectionSql.js,新建各自集合并插入初始数据；
+
 如果您想自定义数据库名，可以在server/db/config.js 文件下修改dbName字段即可；
 
 开发模式下，后端默认端口3001；前端webpack-server默认端口8081；
