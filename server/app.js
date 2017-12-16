@@ -10,8 +10,6 @@ intialDatabase();
 var check404 = require('./logicCheck/404');
 var check500 = require('./logicCheck/500');
 var sessionCode = require('./logicCheck/sessionid');
-// var index = require('./routes/index');
-// var users = require('./routes/users');
 
 var doRouteConfig = require('./logicCheck/preLoad');
 // var util = require('util');
@@ -33,13 +31,6 @@ app.engine('html', hbs.__express);
 app.use(compression());
 //取消头部X-powered-by属性显示
 app.disable('x-powered-by');
-// uncomment after placing your favicon in /public
-// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({
-// 	extended: false
-// }));
 app.use(bodyParser.urlencoded({
 	limit: '5mb',
 	extended: true
@@ -61,15 +52,6 @@ app.use(session({
 	resave: true,
 	saveUninitialized: true
 }));
-//设置跨域访问
-// app.all('*', function(req, res, next) {
-// 	res.header("Access-Control-Allow-Origin", "*");
-// 	res.header("Access-Control-Allow-Headers", "X-Request-With");
-// 	res.header("Access-Control-Allow-Methods", "POST");
-// 	res.header("X-Powdered-By", "3.2.1");
-// 	res.header("Content-Type", "application/json;charset-utf-8");
-// 	next();
-// });
 //设置静态访问目录，而无需经过过滤器等验证判断（一般属于一些脚本样式或无需逻辑判断的展示页面等）
 app.use(express.static(path.join(__dirname, 'public')));
 // app.use('/', index);

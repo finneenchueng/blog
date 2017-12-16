@@ -9,28 +9,6 @@ module.exports = function(req, res) {
 		var _keywords = msgTool.key_words;
 		var _desc = msgTool.desc;
 		if (req.session.archiveListOpt == undefined) {
-			// console.log("begin ........do")
-			// postModal.getArchiveList(function(result) {
-			// 	var outputOpt = {
-			// 		data: result
-			// 	};
-			// 	// console.log(outputOpt.data)
-			// 	// console.log(outputOpt.data[1].children)
-			// 	// console.log(outputOpt.data[1].children[0])
-			// 	// console.log(outputOpt.data[1].children[0].title)
-			// 	console.log(outputOpt)
-			// 	var _data = msgTool.outputJsonResultWithCompile(outputOpt);
-			// 	req.session.archiveListOpt = _data
-			// 	// console.log(msgTool.parseJsonResult(_data));
-			// 	res.render('archives', {
-			// 		title: _title,
-			// 		keywords: _keywords,
-			// 		desc: _desc,
-			// 		body: _data
-			// 	});
-
-			// });
-
 
 			postModal.getAllPostList(function(result) {
 				var outputOpt = {
@@ -79,13 +57,7 @@ module.exports = function(req, res) {
 
 
 	} else {
-		// var param_key = req.body[msgTool.outerParamKey];
-		// param_key = param_key == undefined ? null : param_key;
-		// param_key = msgTool.parseJsonResult(param_key);
-		// if (param_key == null) {
-		// 	next();
-		// 	return;
-		// }
+
 		postModal.getArchiveList(function(result) {
 			var outputOpt = {
 				data: result

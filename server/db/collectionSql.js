@@ -36,9 +36,9 @@ module.exports = [{
 	collectionName: 'user',
 	dbSort: [{
 			"user_id": "bWjCQELbXkY008",
-			"user_name": "finneen",
+			"user_name": "admin",
 			"email": "zhuimengyiyuan@msn.cn",
-			"password": "bd93f03b3851bbe793cb9a857d1e9a97",
+			"password": "4fd81f626d9779fbbfc917c1c0747628",//123456
 			"create_time": "2017-09-22 23:12:30"
 
 		}
