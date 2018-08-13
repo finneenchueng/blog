@@ -1,0 +1,48 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "vue"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "globals": {
+    "window": true
+  },
+  "rules": {
+//    "no-mixed-spaces-and-tabs": "error",
+    "camelcase": 1,
+//    "camelcase":["error",{ "properties" : "never"}],
+    "eqeqeq": "warn",
+    "curly": "error",
+    "no-undef": "error",
+    "no-unused-vars": "warn",
+    "max-params": "warn",
+    // 新增的一些规则
+    "indent": [ "error", 4 ],
+    "linebreak-style": [
+      "error",
+      "unix"
+    ],
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "semi": [
+      "error",
+      "always"
+    ],
+
+    "no-cond-assign": [
+      "error",
+      "always"
+    ],
+    // 禁用一些规则
+    "no-console": "off"
+  }
+}
