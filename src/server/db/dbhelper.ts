@@ -1,6 +1,6 @@
 
 import mongodb from 'mongodb';
-import assert from 'assert';
+import * as assert from 'assert';
 import { getMongodbPath } from './config';
 
 const MongoClient = mongodb.MongoClient;

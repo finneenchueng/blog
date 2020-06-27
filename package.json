@@ -17,6 +17,7 @@
     "server:lint": "cross-env NODE_ENV=lint gulp"
   },
   "dependencies": {
+    "assert": "^2.0.0",
     "co": "^4.6.0",
     "cross-env": "^7.0.2",
     "inversify": "^5.0.1",
@@ -29,6 +30,7 @@
     "koa2-connect-history-api-fallback": "^0.1.2",
     "lodash": "^4.17.15",
     "log4js": "^6.3.0",
+    "mongodb": "^3.5.9",
     "node-fetch": "^2.6.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
