@@ -9,7 +9,9 @@ import co from 'co';
 import * as render from 'koa-swig';
 import * as serve from 'koa-static';
 import './ioc/inversify.config';
-import config from './basic';
+import basic from './basic';
+import { initialDb } from '../db/install';
+
 // configure({
 //   appenders: {
 //     cheese: { type: 'file', filename: `${__dirname}/logs/yd.log` }
@@ -45,12 +47,13 @@ import config from './basic';
 // });
 
 export function preConfig(app){
+  initialDb();
   app.context.logger = getLogger('cheese');
   errorHandler.error(app);
   app.use(bodyParser());
   app.context.render = co.wrap(
     render({
-      root: config.viewDir,
+      root: basic.viewDir,
       autoescape: true,
       cache: 'memory', // disable, set to false
       ext: 'html',
@@ -58,7 +61,7 @@ export function preConfig(app){
       writeBody: false
     })
   );
-  app.use(serve(config.staticDir)); // 静态资源文件
+  app.use(serve(basic.staticDir)); // 静态资源文件
   // handle fallback for HTML5 history API
   // 增加了白名单选项， 插件默认会将所有的请求都指向到index.html
   // app.use(historyApiFallback({ index: '/', whiteList: ['/api'] }));

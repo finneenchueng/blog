@@ -26,4 +26,14 @@ export default class ApiController implements interfaces.Controller {
     );
     ctx.body = result;
   }
+  @httpGet("/admin")
+  private async admin(
+    ctx: Router.IRouterContext,
+    next: () => Promise<any>
+  ): Promise<any> {
+    const result: Promise<Object> = await this.apiService.getAdmin();
+    ctx.body = result;
+  }
+
+  
 }

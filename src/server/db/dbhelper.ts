@@ -1,45 +1,99 @@
 
-import mongodb from 'mongodb';
+import { Admin, Collection, Db, MongoClient } from 'mongodb';
 import * as assert from 'assert';
-import { getMongodbPath } from './config';
+import { dbName, mongodbPath } from './config';
 
-const MongoClient = mongodb.MongoClient;
-
-function getConnection(callback) {
-	MongoClient.connect(getMongodbPath(), {
-		native_parser: true,
-		// useMongoClient: true,
-		keepAlive: 200000,
-		connectTimeoutMS: 6000,
-		// auto_reconnect: true,
-		poolSize: 10
-
-	}, function(err, db) {
-		if (err) {
-			console.log('连接失败！');
-		} else {
-			// console.log('连接成功！');
-			callback(db, assert);
-			
-			/*
-			// 注销数据库
-			db.logout(function(err, result) {
-				if (err) {
-					console.log('注销失败...');
-				}
-
-				db.close(); // 关闭连接
-				console.log('连接已经关闭！');
-			});
-			*/
-		}
-
-	});
+type IDbWithMongoClient = {
+	db: Db;
+	client: MongoClient;
+	dbName?: string;
 }
 
-export function operateDb(collectorName, fn) {
-	getConnection((db, assert) => {
-		const Collection = db.collection(collectorName);
-		fn(db, Collection, assert);
+type IDataBasesItem = {
+	name: string;
+	sizeOnDisk: number;
+	empty: boolean;
+}
+interface IDataBases {
+	databases: IDataBasesItem[];
+	totalSize: number;
+	ok?: number;
+
+}
+
+interface IResult {
+	code: -1 | 0 | 1;
+	result?: any;
+}
+
+// Create a new MongoClient
+const client: MongoClient = new MongoClient(mongodbPath, {
+	keepAlive: true,
+	useUnifiedTopology: true,
+	connectTimeoutMS: 60000,
+	poolSize: 10
+});
+
+function getConnection(transDbName?: string): Promise<Db> {
+	const _dbname = transDbName || dbName;
+	return new Promise((resolve, reject) => {
+		client.connect((err) => {
+			assert.equal(null, err);
+			if(err){
+				console.log("Connected failed to server");
+				resolve(null);
+			}
+			const db = transDbName ? client.db(_dbname) : client.db();
+			resolve(db);
+		});
 	});
+	
+}
+
+export async function getConnectionWithClient(transDbName?: string): Promise<IDbWithMongoClient> {
+	const db: Db = await getConnection(transDbName);
+	return {
+		db, 
+		client,
+		dbName
+	}
+	
+}
+
+export async function databaseFound(databaseName: string, db?: Db): Promise<boolean> {
+	const mongoDb = db || client.db();
+	const _admin: Admin = mongoDb.admin();
+	const _datas: IDataBases = await _admin.listDatabases();
+	return _datas.databases.filter((item)=>{
+		if(item.name === databaseName){
+			return true;
+		}
+		return false;
+	}).length > 0;
+}
+
+export async function dbAction({transDbName, tblName}: {[key: string]: string}, fn): Promise<IResult> {
+	const _dbname = transDbName || dbName;
+	const db: Db = await getConnection(_dbname);
+	if(!db){
+		return {
+			code: 1
+		};
+	}
+	const collection: Collection = db.collection(tblName);
+	let result: IResult;
+	try {
+		const ColResult = await fn(collection);
+		client.close();
+		result = {
+			code: 1,
+			result: ColResult,
+		};
+	} catch (e){
+		result = {
+			code: -1
+		};
+	}
+	client.close();
+	return result;
 }
