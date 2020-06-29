@@ -83,11 +83,10 @@ export async function dbAction({transDbName, tblName}: {[key: string]: string}, 
 	const collection: Collection = db.collection(tblName);
 	let result: IResult;
 	try {
-		const ColResult = await fn(collection);
-		client.close();
+		const colResult = await fn(collection);
 		result = {
 			code: 1,
-			result: ColResult,
+			result: colResult,
 		};
 	} catch (e){
 		result = {

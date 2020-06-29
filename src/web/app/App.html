@@ -1,3 +1,143 @@
-<img src="../assets/images/logo.png">
-<h1>Demo for Vue 3!</h1>
-<button @click="inc">Clicked {{ count }} times.</button>
+<div class="container">
+    <div class="col-x col-0" style="display:none;">
+        <img src="../assets/images/logo.png">
+        <h1>Demo for Vue 3!</h1>
+        <button @click="inc">Clicked {{ count }} times.</button>
+    </div>
+    <div class="col-x">
+        <canvas id="canvas" class="canvas-box">
+            浏览器不支持canvas
+        </canvas>
+
+        <form>
+            <span>
+                Text
+            </span>
+            <input id="textBox" />
+            <br/>
+            <span>
+                Fill or Stroke
+            </span>
+            <select id="fillOrStroke">
+                <option value="fill">
+                    fill
+                </option>
+                <option value="stroke">
+                    stroke
+                </option>
+                <option value="both">
+                    both
+                </option>
+            </select>
+            <br/>
+            <span>
+                Font
+            </span>
+            <select id="textFont">
+                <option value="serif">
+                    serif
+                </option>
+                <option value="sans-serif">
+                    sans-serif
+                </option>
+                <option value="cursive">
+                    cursive
+                </option>
+                <option value="fantasy">
+                    fantasy
+                </option>
+                <option value="monospace">
+                    monospace
+                </option>
+            </select>
+            <br/>
+            <span>
+                font size
+            </span>
+            <input type="range" id="textSize" min="0" max="200" value="30" />
+            <br/>
+            <span>
+                font color
+            </span>
+            <input class="color" id="textFillColor" value="FF0000" />
+            <br/>
+            <span>
+                font weight
+            </span>
+            <select id="fontWeight">
+                <option value="normal">
+                    normal
+                </option>
+                <option value="bold">
+                    bold
+                </option>
+                <option value="bolder">
+                    bolder
+                </option>
+                <option value="lighter">
+                    lighter
+                </option>
+            </select>
+            <br/>
+            <span>
+                font style
+            </span>
+            <select id="fontStyle">
+                <option value="normal">
+                    normal
+                </option>
+                <option value="italic">
+                    italic
+                </option>
+                <option value="oblique">
+                    oblique
+                </option>
+            </select>
+            <br/>
+            <span>
+                textBaseLine
+            </span>
+            <select id="textBaseline">
+                <option value="middle">
+                    middle
+                </option>
+                <option value="top">
+                    top
+                </option>
+                <option value="hanging">
+                    hanging
+                </option>
+                <option value="alphabetic">
+                    alphabetic
+                </option>
+                <option value="ideographic">
+                    ideographic
+                </option>
+                <option value="bottom">
+                    bottom
+                </option>
+            </select>
+            <br/>
+            <span>
+                TextAlign
+            </span>
+            <select id="textAlign">
+                <option value="center">
+                    center
+                </option>
+                <option value="start">
+                    start
+                </option>
+                <option value="end">
+                    end
+                </option>
+                <option value="left">
+                    left
+                </option>
+                <option value="right">
+                    right
+                </option>
+            </select>
+        </form>
+    </div>
+</div>

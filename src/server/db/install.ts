@@ -27,18 +27,17 @@ export function initialDb(): Promise<{[key: string]: string | number}> {
 		let _client: MongoClient, _db: Db;
 		const { client, db, dbName } = await getConnectionWithClient();
 		const dbIsExist = await databaseFound(dbName, db);
+		client.close();
 		if(dbIsExist){
-			client.close();
 			console.log('has initialized')
 			resolve({code: 1});
 			return;
 		}
-		client.close();
 		const result = await getConnectionWithClient(dbName);
-		_client = result.client;
-		_db = result.db;
+		_client = result.client, _db = result.db;
 		if(!db){
 			resolve({code: 0});
+			return;
 		}
 		sqlJson.forEach( async (item, i, arr) => {
 			const resultData = await insertData(_db, item);
