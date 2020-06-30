@@ -1,7 +1,7 @@
-import { TAGS,inject, provide } from "../config/ioc";
-import { IApi } from "../interface/IApi";
-import TYPES from "../constant/TYPES";
-import { getUser } from "../db/operator";
+import { TAGS,inject, provide } from '../config/ioc';
+import { IApi } from '../interface/IApi';
+import TYPES from '../constant/TYPES';
+import { getUser } from '../db/operator';
 
 @provide(TAGS.ApiService)
 export class ApiService implements IApi {
@@ -12,7 +12,7 @@ export class ApiService implements IApi {
   public getInfo(url: string, arg?: Object, callback?: Function): Promise<Object> {
    return this.safeRequest.fetch(url,arg,callback);
   }
-  public async getAdmin(): Promise<Object> {
+  public async getUser(): Promise<Object> {
     const result = await getUser();
     return result;
    }

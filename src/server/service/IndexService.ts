@@ -1,7 +1,7 @@
-import { TAGS,inject, provide } from "../config/ioc";
-import { IIdex } from "../interface/IIndex";
-import { Model } from "../model/User";
-import TYPES from "../constant/TYPES";
+import { TAGS,inject, provide } from '../config/ioc';
+import { IIdex } from '../interface/IIndex';
+import { Model } from '../model/User';
+import TYPES from '../constant/TYPES';
 @provide(TAGS.IndexService)
 export class IndexService implements IIdex {
   private safeRequest;
@@ -11,12 +11,12 @@ export class IndexService implements IIdex {
 
   private userStorage: Model.User[] = [
     {
-      email: "yuanzhijia@yidengfe.com",
-      name: "zhijia"
+      email: 'yuanzhijia@yidengfe.com',
+      name: 'zhijia'
     },
     {
-      email: "Copyright © 2016 yidengfe.com All Rights Reversed.京ICP备16022242号-1",
-      name: "laowang"
+      email: 'Copyright © 2016 yidengfe.com All Rights Reversed.京ICP备16022242号-1',
+      name: 'laowang'
     }
   ];
 
