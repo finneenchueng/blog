@@ -1,29 +1,29 @@
 import pathConfig from './request'
-import validator from './validator'
-import compiles from '../../../server/logicCheck/compile';
+// import validator from './validator'
+// import compiles from '../../../server/logicCheck/compile';
 
-function baseEncrypt(code) {
-  return compiles.codeEncrypt(code);
-}
-function baseDecrypt(code) {
-  return compiles.codeDecrypt(code);
-}
-function getPostParamOption(code) {
-  return compiles.getPostParamOption(code);
-}
-function parseJsonResult(code) {
-  return compiles.parseJsonResult(code);
-}
-function doValidator(validatorName) {
-  return validator[validatorName];
-}
-function replaceLineBreak(content) {
+// function baseEncrypt(code) {
+//   return compiles.codeEncrypt(code);
+// }
+// function baseDecrypt(code) {
+//   return compiles.codeDecrypt(code);
+// }
+// function getPostParamOption(code) {
+//   return compiles.getPostParamOption(code);
+// }
+// function parseJsonResult(code) {
+//   return compiles.parseJsonResult(code);
+// }
+// function doValidator(validatorName) {
+//   return validator[validatorName];
+// }
+function replaceLineBreak(content: string) {
   var str = content;
   str = str.replace(/(<br\/>)/g, "\n");
   str = str.replace(/(&nbsp;)/g, "  ");
   return str;
 }
-function getFormData(inputArray, isCheck) {
+function getFormData(inputArray: Array<{[key: string]: any}>, isCheck: boolean) {
   var len = inputArray.length;
   var json = '{';
   var _index = 0;
@@ -53,7 +53,7 @@ function getFormData(inputArray, isCheck) {
       str = str.replace(/\s/g, "&nbsp;");
       _value = str;
     } else if (cell_input.tagName == 'SELECT') {
-      var index = cell_input.selectedIndex;
+      var index = parseInt(cell_input.selectedIndex) as number;
       if (isCheck) {
         if (index > -1) {
           _value = cell_input.options[index].value;
@@ -67,14 +67,14 @@ function getFormData(inputArray, isCheck) {
       }
 
     } else if (cell_input.type == 'checkbox') {
-      _value = cell_input.checked
-        ? 1
-        : 0;
+      // _value = cell_input.checked
+      //   ? 1
+      //   : 0;
     } else {
       _value = cell_input.value;
     }
     if (cell_input.getAttribute("data-decode-mark") == 1) {
-      _value = baseEncrypt(_value);
+      // _value = baseEncrypt(_value);
     }
     if (_name) {
       if (_index > 0) {
@@ -91,7 +91,7 @@ function getMenuList() {
   return pathConfig.menuList;
 }
 function checkDevOrProdEnv() {
-  return compiles.isProd;
+  // return compiles.isProd;
   // document.querySelector('meta[name="mutate-app"]').getAttribute('content')
 
   // if(window.clientSetting==null||window.clientSetting==undefined){
@@ -127,14 +127,14 @@ function getPageInitData() {
   }
 
 }
-function getMenuJumpPath(key) {
-  var falg = checkDevOrProdEnv();
-  if (falg) {
-    return pathConfig.prod[key];
-  } else {
-    return pathConfig.dev[key];
-  }
-}
+// function getMenuJumpPath(key) {
+//   var falg = checkDevOrProdEnv();
+//   if (falg) {
+//     return pathConfig.prod[key];
+//   } else {
+//     return pathConfig.dev[key];
+//   }
+// }
 function getBrowser() {
   var ua = navigator.userAgent,
     isWindowsPhone = /(?:Windows Phone)/.test(ua),
@@ -160,7 +160,7 @@ function isBrowserSupport() {
   // }
   return isMyWebSupport;
 }
-function doSessionStorageItem(key, val) {
+function doSessionStorageItem(key: string, val: string) {
   if (!window.sessionStorage) {
     return undefined;
   }
@@ -173,17 +173,17 @@ function doSessionStorageItem(key, val) {
 }
 
 const toolkit = {
-  baseEncrypt: baseEncrypt,
-  baseDecrypt: baseDecrypt,
-  getPostParamOption: getPostParamOption,
-  parseJsonResult: parseJsonResult,
-  doValidator: doValidator,
+  // baseEncrypt: baseEncrypt,
+  // baseDecrypt: baseDecrypt,
+  // getPostParamOption: getPostParamOption,
+  // parseJsonResult: parseJsonResult,
+  // doValidator: doValidator,
   replaceLineBreak: replaceLineBreak,
   getFormData: getFormData,
   getMenuList: getMenuList,
   checkDevOrProdEnv: checkDevOrProdEnv,
   getPageInitData: getPageInitData,
-  getMenuJumpPath: getMenuJumpPath,
+  // getMenuJumpPath: getMenuJumpPath,
   getBrowser: getBrowser,
   isBrowserSupport: isBrowserSupport,
   doSessionStorageItem: doSessionStorageItem

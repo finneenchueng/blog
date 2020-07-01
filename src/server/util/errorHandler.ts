@@ -1,5 +1,7 @@
 import { Logger } from "log4js";
 import { Context } from "koa";
+import { join } from 'path';
+import { createReadStream } from 'fs';
 const errorHandler = {
   error(app) {
     interface KOAContext extends Context {
@@ -7,19 +9,35 @@ const errorHandler = {
       logger: Logger;
     }
     app.use(async (ctx, next: () => Promise<any>) => {
-      // await next().catch(error => {
+      const _method = ctx.request.method.upperCase();
       try {
         await next();
         const status = ctx.status || 404;
         if (status === 404) {
-            ctx.throw(404)
+          ctx.status = 404;
+          if (_method === 'GET') {
+            ctx.type = 'html';
+            ctx.body = createReadStream(join(__dirname, '../public/404/index.html'));
+          } else if (_method === 'POST') {
+            ctx.body = { error: "the reqeust is gone!" };
+          }
         }
       } catch (error) {
         // error logs pm2 logs
         ctx.logger.error(error);
         ctx.status = error.status || 500;
-        ctx.body = ctx.status === 404 ? `${ctx.originalUrl} not found` : "请求出错";
+        if (ctx.status === 500) {
+          if (_method === 'GET') {
+            ctx.type = 'html';
+            ctx.body = createReadStream(join(__dirname, '../public/500/index.html'));
+          } else if (_method === 'POST') {
+            ctx.body = { error: "sorry,the server is found error!" };
+          }
+        }
+
       }
+
+
     });
   }
 };
