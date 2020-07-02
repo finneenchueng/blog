@@ -1,11 +1,12 @@
 import { defineComponent } from 'vue';
-import Click from '@/components/click/Click.vue';
-
+import click from '@/components/click/Click.vue';
+import click2 from '@/components/click2/Click.vue';
 
 export default defineComponent({
     
     components: {
-        Click
+        click,
+        click2
     },
     methods: {
 
