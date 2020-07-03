@@ -77,10 +77,10 @@ function getHeaderResult(opts, key?) {
   }
   return itemString;
 }
-function checkHeaderProperty(headers: any, propertyName: string, compareVaule?: string): boolean | Array<string> {
+function checkHeaderProperty(headers: any, propertyName: string, compareVaule?: string): boolean | string {
   const _headers = headers[propertyName] ? headers : analyzeHeaders(headers);
   if (Array.isArray(_headers[propertyName])) {
-    return compareVaule ? _headers[propertyName].includes(compareVaule) : _headers[propertyName];
+    return compareVaule ? _headers[propertyName].includes(compareVaule) : _headers[propertyName].join(',');
   }
   return compareVaule ? _headers[propertyName] === compareVaule : _headers[propertyName];
 }
@@ -88,27 +88,30 @@ function checkHeaderProperty(headers: any, propertyName: string, compareVaule?: 
 function analyzedBodyBuffer(headers: any, { arg, bufferArray, totalSize }) {
   // checkHeaderProperty(headers, 'content-type', 'application/json')
   const _headers = analyzeHeaders(headers);
-  const contentType = checkHeaderProperty(_headers, 'content-type');
+  const contentType = checkHeaderProperty(_headers, 'content-type') as string;
   const preContentTypes = ['application/json', 'text/html'];
+  let charCoding = 'utf-8', result;
   for (let i = 0, len = preContentTypes.length; i < len; i++) {
     let typeString = getHeaderResult(contentType, preContentTypes[i]);
+    if(!typeString && !contentType.includes(preContentTypes[i])){
+        continue;
+    }
     typeString = typeString || contentType;
-    if (typeString.includes('json')) {
-      let result: string = bufferArray.join('').toString();
+    if (typeString.includes('charset')) {
+      charCoding = typeString.split(';').filter((item) => {
+        return item.includes('charset');
+      })[0].split('=')[1];
+    }
+    result = decode(Buffer.concat(bufferArray, totalSize), charCoding);
+    try{
       if (arg && arg.isJson) {
         result = JSON.parse(result);
       }
-      return result;
-    }
-    if (typeString.includes('charset')) {
-      const charCoding = typeString.split(';').filter((item) => {
-        return item.includes('charset');
-      })[0].split('=')[1];
-      const result = decode(Buffer.concat(bufferArray, totalSize), charCoding);
-      return result;
-    }
+    } catch(e){}
+    
+    return result;
   }
-
+  return null;
 }
 @provide(TYPES.SafeRequest)
 export class SafeRequest implements ISafeRequest {
@@ -142,7 +145,7 @@ export class SafeRequest implements ISafeRequest {
                 size: totalSize,
               });
             }
-            
+
           });
         }).catch(e => {
           resolve({
