@@ -1,5 +1,5 @@
 const TAGS = {
-    IndexService: Symbol.for('IndexService'),
+    PageService: Symbol.for('PageService'),
     ApiService: Symbol.for('ApiService')
     // IndexService: 'IndexService'
 };
