@@ -1,5 +1,5 @@
-import '../../controller/IndexController';
+import '../../controller/PageController';
 import '../../controller/ApiController';
-import '../../service/IndexService';
+import '../../service/PageService';
 import '../../service/ApiService';
 import '../../util/SafeRequest';

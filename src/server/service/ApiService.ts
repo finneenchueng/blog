@@ -1,5 +1,5 @@
 import { TAGS,inject, provide } from '../config/ioc';
-import { IApi } from '../interface/IApi';
+import { IApi } from '../interface/IApiService';
 import TYPES from '../constant/TYPES';
 import { getUser } from '../db/operator';
 
