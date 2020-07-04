@@ -1,3 +1,4 @@
+import * as Koa from "koa";
 import * as bodyParser from 'koa-bodyparser';
 import { configure, getLogger } from 'log4js';
 // import 'reflect-metadata';
@@ -46,7 +47,7 @@ import { initialDb } from '../db/install';
 //   console.log('>>>>>');
 // });
 
-export function preConfig(app){
+export function preConfig(app: Koa){
   initialDb();
   app.context.logger = getLogger('cheese');
   errorHandler.error(app);
@@ -67,7 +68,7 @@ export function preConfig(app){
   // app.use(historyApiFallback({ index: '/', whiteList: ['/api'] }));
 }
 
-export function preErrConfig(app){
+export function preErrConfig(app: Koa){
   app.on('error', (err, next) => {
     console.log('>>>>err:', err)
     console.log('系统初始化检查报警');

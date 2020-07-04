@@ -124,7 +124,8 @@ export class SafeRequest implements ISafeRequest {
       fetch(requestUrl, option)
         .then(res => {
           const { headers, body } = res;
-          let bufferArray = [], totalSize = 0;
+          const bufferArray = [];
+          let totalSize = 0;
           body.on('data', (chunk) => {
             // console.log(Buffer.isBuffer(chunk));
             bufferArray.push(chunk);

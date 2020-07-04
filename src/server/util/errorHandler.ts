@@ -1,17 +1,20 @@
+import * as Koa from 'koa';
 import { Logger } from "log4js";
-import { Context } from "koa";
+// import { Context } from "koa";
 import { join } from 'path';
 import { createReadStream } from 'fs';
 const errorHandler = {
-  error(app) {
-    interface KOAContext extends Context {
-      // typeof logger;
-      logger: Logger;
-    }
+  error(app: Koa) {
+    // interface KOAContext extends Context {
+    //   // typeof logger;
+    //   logger: Logger;
+    // }
     app.use(async (ctx, next: () => Promise<any>) => {
       const _method = ctx.request.method.toUpperCase();
+      console.log('_method:',_method)
       try {
         await next();
+        console.log('000_method:','none....')
         const status = ctx.status || 404;
         if (status === 404) {
           ctx.status = 404;
