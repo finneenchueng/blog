@@ -10798,6 +10798,11 @@ vue-loader@16.0.0-beta.3:
     merge-source-map "^1.1.0"
     source-map "^0.6.1"
 
+vue-router@^4.0.0-beta.1:
+  version "4.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-4.0.0-beta.1.tgz#8ccdc37c991efa30d1519f885dd772307715503a"
+  integrity sha512-byqdBiKISN9Qrse6A0fgR6tePQNwlAdx+wBgO2x08MEn6hy8ds19uKvosfruVjw5vhpFmjvGR15Z68an+7fRAQ==
+
 vue@^3.0.0-beta.15:
   version "3.0.0-beta.15"
   resolved "https://registry.yarnpkg.com/vue/-/vue-3.0.0-beta.15.tgz#99f107534755d3a237b51fc1279c43af2fefde6e"

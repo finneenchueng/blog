@@ -1,3 +1,55 @@
-<div v-if="isInitialized">
-    <button @click="inc()">Clicked {{ countState.count }} times.</button>
-</div>
+<div class="f-container-item" ref="container_detail">
+    <!-- <article class="weui-article">
+        <h1>大标题</h1>
+        <section>
+            <h2 class="title">章标题</h2>
+            <section>
+                <h3>1.1 节标题</h3>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat.
+                </p>
+                <p>
+                  {{detailData}}
+                </p>
+                <p>
+                    <img src="./images/pic_article.png" alt="">
+                    <img src="./images/pic_article.png" alt="">
+                </p>
+            </section>
+            <section>
+                <h3>1.2 节标题</h3>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+            </section>
+        </section>
+    </article> -->
+    <div class="weui-panel">
+        <!-- <div class="weui-panel__hd">文字列表附来源</div> -->
+        <div class="weui-panel__bd">
+          <div class="weui-media-box weui-media-box_text">
+            <article class="weui-article">
+                <h1>{{detailData.title}}</h1>
+                <section>
+                  <p v-html="pageContent"></p>
+                </section>
+            </article>
+            <ul class="weui-media-box__info">
+                <li class="weui-media-box__info__meta" >作者：{{detailData.author}}</li>
+                <li class="weui-media-box__info__meta weui-media-box__info__meta_extra">标签：{{detailData.lblName}}</li>
+                <li class="weui-media-box__info__meta weui-media-box__info__meta_extra" >写于：{{detailData.createTime==undefined?'':detailData.createTime.substr(0,10)}}</li>
+
+            </ul>
+          </div>
+
+        </div>
+
+    </div>
+
+  </div>

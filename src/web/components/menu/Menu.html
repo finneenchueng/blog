@@ -1,3 +1,33 @@
-<div v-if="isInitialized">
-    <button @click="inc()">Clicked {{ countState.count }} times.</button>
-</div>
+<div class="f-header-box ">
+    <div class="weui-flex">
+        <div class="weui-flex__item head-logo-item">
+          <a href="javascript:;" class="head-logo">
+            <img src="../../assets/logo.png" />
+          </a>
+        </div>
+    </div>
+    <div class="weui-flex" v-if="isPc==true">
+      <div class="weui-flex__item">
+
+      </div>
+      <div class="weui-flex__item">
+        <!-- <MenuList :menu-data="menu_list"></MenuList> -->
+        <div class="weui-flex">
+          <div class="weui-flex__item"  v-for="(item,index) in menu_list" v-bind:key="index">
+            <a  :href="getTargetPath(item.target)" :data-index="index"  class="title-box" :class="{'active': (m_index==index)}" @click="toggleRoute">{{item.text}}</a>
+          </div>
+
+        </div>
+      </div>
+      <div class="weui-flex__item">
+
+      </div>
+    </div>
+
+    <div class="weui-flex" v-else>
+      <div class="weui-flex__item"  v-for="(item,index) in menu_list" v-bind:key="index">
+        <a  :href="getTargetPath(item.target)" :data-index="index"  class="title-box" :class="{'active': (m_index==index)}" @click="toggleRoute">{{item.text}}</a>
+      </div>
+    </div>
+
+  </div>

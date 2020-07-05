@@ -4,7 +4,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: {
-        app: path.resolve(__dirname, '../../src/web/entry/main.ts'),
+        app: path.resolve(__dirname, '../../src/web/entry/app.ts'),
     },
     resolve: {
         extensions: ['.ts', '.js', '.tsx', '.jsx', '.vue', '.json'],
