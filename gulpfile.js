@@ -26,28 +26,28 @@ const babelConfig = {
 
 const entry = './src/server/**/*.ts';
 
-const { isDev, isLint, isProd } = require('./config/enviroment');
+const { isDev, isLint, isProd, isBabel } = require('./config/enviroment');
 
 //开发环境
-// function builddev() {
-//   return watch(
-//     entry,
-//     {
-//       ignoreInitial: false
-//     },
-//     function() {
-//       gulp
-//         .src(entry)
-//         .pipe(
-//           babel({
-//             babelrc: false,
-//             ...babelConfig
-//           })
-//         )
-//         .pipe(gulp.dest('dist'));
-//     }
-//   );
-// }
+function builddevbabel() {
+  return watch(
+    entry,
+    {
+      ignoreInitial: false
+    },
+    function() {
+      gulp
+        .src(entry)
+        .pipe(
+          babel({
+            babelrc: false,
+            ...babelConfig
+          })
+        )
+        .pipe(gulp.dest('dest'));
+    }
+  );
+}
 //上线环境
 function buildprod() {
     return gulp
@@ -121,7 +121,7 @@ function buildprod() {
         .pipe(gulp.dest('./dist'))
     );
   }
-  let build = gulp.series(builddev);
+  let build = isBabel ? gulp.series(builddevbabel) : gulp.series(builddev);
   if (isProd) {
     build = gulp.series(buildprod, buildconfig);
   }
