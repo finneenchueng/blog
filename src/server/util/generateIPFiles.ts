@@ -67,7 +67,10 @@ function generateAvalableIp(){
 				for(let a4 = index4; a4 < level1Ignores[5]; a4++){
 					if(index4 > 1 && a4 === level1Ignores[5] - 1){
 						index4 = 1;
-					}
+                    }
+                    if(!result){
+                        result = new LinkedList();
+                    }
 					const newcontent = {};
 					const key = `${a1}.${a2}.${a3}.${a4}`;
 					newcontent[key] = {
@@ -76,34 +79,21 @@ function generateAvalableIp(){
 					};
 					result.append(newcontent);
 					count++;
-					// console.log('initArr: ', initArr);
 					console.log('record count: ', count);
                     console.log('ip: ', key);
-                    if(process.argv && process.argv.length){
+                    if(process.argv && process.argv.length > 2){
                         console.log('process index:', process.argv[2])  
                     }
                     
 					if(a1 === level1Ignores[5] - 1 &&  a2 === level1Ignores[5] - 1 && a3 === level1Ignores[5] - 1 && a4 === level1Ignores[5] - 1){
-						console.log('.........')
 						writeIndexFiles(key);
 						writeIpFiles(result);
-					} else if(count % (5 * 1000 * 1000) === 0){
-						console.log(count)
+					} else if(count % (5 * 100 * 100) === 0){
 						writeIndexFiles(key);
 						writeIpFiles(result);
-						result.empty();
+                        // result.empty();
+                        result = null;
 					}
-					
-
-					// if(!result[key]){
-					// 	result[key] = {
-					// 		location: '',
-					// 		langShort: '',
-					// 	};
-					// 	count++;
-					// 	console.log(result);
-					// 	console.log('record count;', count);
-					// }
 					
 				}
 			}
@@ -113,5 +103,5 @@ function generateAvalableIp(){
 	console.log('spend time:', (endTime - startTime)/1000/60);
 	// fs.writeFileSync(filepath, result);
 }
-console.log('start to do........')
+
 generateAvalableIp();

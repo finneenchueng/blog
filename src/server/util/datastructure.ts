@@ -149,7 +149,6 @@ export class LinkedList {
 			current = current.next;
 			num++;
 		}
-		console.log('num:', num)
 		// return str;
 		const result = JSON.stringify(initJson);
 		return result.substring(1, result.length - 1);
