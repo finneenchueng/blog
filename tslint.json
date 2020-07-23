@@ -13,7 +13,7 @@
       ]
     },
     "quotemark": [false, "double", "single", "avoid-escape"],
-    "disable-next-line": "no-increment-decrement",
-    "no-increment-decrement": "false"
+    "no-increment-decrement": "false",
+    "disable-next-line": "import-name"
   }
 }

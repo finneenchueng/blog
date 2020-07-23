@@ -39,7 +39,7 @@ module.exports = merge(baseWebpackConfig, extraAction({
                 ]
             },
             {
-                test: /\.png$/,
+                test: /\.(png|jpg|gif)([\?]?.*)$/,
                 use: {
                   loader: 'url-loader',
                   options: { limit: 8192 }

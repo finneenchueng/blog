@@ -1,5 +1,5 @@
 import { defineComponent, onBeforeMount } from 'vue'
-import { clickStore } from '../../store/click-store'
+import { clickStore } from '@/store/click-store'
 
 export default defineComponent({
     setup() {
