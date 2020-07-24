@@ -21,8 +21,8 @@ export default class PageController implements interfaces.Controller {
     ctx: Router.IRouterContext,
     next: () => Promise<any>
   ): Promise<any> {
-    console.log('start...:','>>>>/')
-    const result: Model.User = this.pageService.getUser(1);
+    const result: Model.User = await this.pageService.getUser(1);
+    console.log('result:', result)
     ctx.body = await ctx.render('index', { data: result.email });
   }
 }

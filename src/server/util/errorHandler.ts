@@ -11,10 +11,8 @@ const errorHandler = {
     // }
     app.use(async (ctx, next: () => Promise<any>) => {
       const _method = ctx.request.method.toUpperCase();
-      console.log('_method:',_method)
       try {
         await next();
-        console.log('000_method:','none....')
         const status = ctx.status || 404;
         if (status === 404) {
           ctx.status = 404;
@@ -22,7 +20,7 @@ const errorHandler = {
             // ctx.type = 'html';
             // ctx.body = createReadStream(join(__dirname, '../public/404/index.html'));
             ctx.body = { error: "the reqeust is gone!" };
-          } else if (_method === 'POST') {
+          } else {
             ctx.body = { error: "the reqeust is gone!" };
           }
         }
@@ -35,7 +33,7 @@ const errorHandler = {
             // ctx.type = 'html';
             // ctx.body = createReadStream(join(__dirname, '../public/500/index.html'));
             ctx.body = { error: "sorry,the server is found error!" };
-          } else if (_method === 'POST') {
+          } else {
             ctx.body = { error: "sorry,the server is found error!" };
           }
         }

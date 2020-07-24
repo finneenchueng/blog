@@ -1,7 +1,7 @@
 
 import { Admin, Collection, Db, MongoClient } from 'mongodb';
 import * as assert from 'assert';
-import { dbName, mongodbPath } from './config';
+import { defaultDbName, mongodbPath } from './config';
 
 type IDbWithMongoClient = {
 	db: Db;
@@ -26,16 +26,26 @@ interface IResult {
 	result?: any;
 }
 
-// Create a new MongoClient
-const client: MongoClient = new MongoClient(mongodbPath, {
-	keepAlive: true,
-	useUnifiedTopology: true,
-	connectTimeoutMS: 60000,
-	poolSize: 10
-});
 
+let client: MongoClient;
+
+// Create a new MongoClient
+function createClient(){
+	return new MongoClient(mongodbPath, {
+		keepAlive: true,
+		useUnifiedTopology: true,
+		connectTimeoutMS: 60000,
+		poolSize: 10
+	});
+}
+export function resetClient(){
+	client = null;
+}
 function getConnection(transDbName?: string): Promise<Db> {
-	const _dbname = transDbName || dbName;
+	const _dbname = transDbName || defaultDbName;
+	if(!client){
+		client = createClient();
+	}
 	return new Promise((resolve, reject) => {
 		client.connect((err) => {
 			assert.equal(null, err);
@@ -55,7 +65,7 @@ export async function getConnectionWithClient(transDbName?: string): Promise<IDb
 	return {
 		db, 
 		client,
-		dbName
+		dbName: defaultDbName
 	}
 	
 }
@@ -73,8 +83,8 @@ export async function databaseFound(databaseName: string, db?: Db): Promise<bool
 }
 
 export async function dbAction({transDbName, tblName}: {[key: string]: string}, fn): Promise<IResult> {
-	const _dbname = transDbName || dbName;
-	const db: Db = await getConnection(_dbname);
+	const _dbname = transDbName || defaultDbName;
+	const db: Db = client.db(_dbname) || await getConnection(_dbname);
 	if(!db){
 		return {
 			code: 1

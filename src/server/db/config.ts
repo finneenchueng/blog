@@ -1,8 +1,8 @@
-export const dbPort = 27017;
+export const defaultDbPort = 27017;
 
-export const dbName = 'blog';
+export const defaultDbName = 'blog';
 
 export const dbServerAddr = 'localhost';
 
-export const mongodbPath = `mongodb://${dbServerAddr}:${dbPort}`;
+export const mongodbPath = `mongodb://${dbServerAddr}:${defaultDbPort}`;
 

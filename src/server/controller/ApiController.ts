@@ -35,5 +35,13 @@ export default class ApiController implements interfaces.Controller {
     ctx.body = result;
   }
 
+  @httpGet('/user')
+  private async getUser(
+    ctx: Router.IRouterContext,
+    next: () => Promise<any>
+  ): Promise<any> {
+    const result: Promise<Object> = await this.apiService.getUser();
+    ctx.body = result;
+  }
   
 }

@@ -1,6 +1,6 @@
 import { Collection, Db, MongoClient } from 'mongodb';
 import * as assert from 'assert';
-import { databaseFound, getConnectionWithClient } from './dbhelper';
+import { databaseFound, getConnectionWithClient, resetClient } from './dbhelper';
 import sqlJson from './sqlJson';
 
 
@@ -26,17 +26,17 @@ function insertData(db, item): Promise<{[key: string]: string | number}>{
 export function initialDb(): Promise<{[key: string]: string | number}> {
 	return new Promise(async (resolve, reject)=>{
 		let _client: MongoClient, _db: Db;
-		const { client, db, dbName } = await getConnectionWithClient();
-		const dbIsExist = await databaseFound(dbName, db);
+		const { client, dbName } = await getConnectionWithClient();
+		const dbIsExist = await databaseFound(dbName);
 		client.close();
 		if(dbIsExist){
-			console.log('has initialized')
+			console.log('database has initialized');
 			resolve({code: 1});
 			return;
 		}
 		const result = await getConnectionWithClient(dbName);
 		_client = result.client, _db = result.db;
-		if(!db){
+		if(!_db){
 			resolve({code: 0});
 			return;
 		}
@@ -46,9 +46,10 @@ export function initialDb(): Promise<{[key: string]: string | number}> {
 			if (i === arr.length - 1) {
 				_client.close();
 				console.log('all db has initialized');
+				resetClient();
 				resolve({code: 1});
-			}
-			
+			}	
 		});
+		
 	})
 }

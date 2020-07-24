@@ -1,23 +1,10 @@
 import { decode } from 'iconv-lite';
 import { provide } from "../config/ioc";
 import TYPES from "../constant/TYPES";
-import { ISafeRequest } from "../interface/ISafeRequest";
+import { ISafeRequest, IPrams, IFetchParams, ITransOption } from "../interface/ISafeRequest";
 import * as fetch from "node-fetch";
 
-type IPrams = {
-  [key: string]: string | number | boolean | unknown | IPrams;
-}
-type IFetchParams = {
-  requestUrl: string;
-} & IPrams;
 
-type ITransOption = {
-  params?: IPrams;
-  fd: typeof FormData;
-  isJson?: boolean;
-  method?: string;
-  headers?: IPrams;
-}
 function prepareForFetchOpt(url: string, options?: ITransOption): IFetchParams {
   let opt = { method: 'get' };
   let newUrl = url;
