@@ -1,6 +1,6 @@
 import { Collection, Db, MongoClient } from 'mongodb';
 import * as assert from 'assert';
-import { databaseFound, getConnectionWithClient, resetClient } from './dbhelper';
+import { databaseFound, getConnectionWithClient } from './dbhelper';
 import sqlJson from './sqlJson';
 
 
@@ -46,7 +46,6 @@ export function initialDb(): Promise<{[key: string]: string | number}> {
 			if (i === arr.length - 1) {
 				_client.close();
 				console.log('all db has initialized');
-				resetClient();
 				resolve({code: 1});
 			}	
 		});
