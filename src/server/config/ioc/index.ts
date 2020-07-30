@@ -6,7 +6,7 @@ import {
 import * as Router from "koa-router";
 import TAGS from "../../constant/TAGS";
 import { Container, injectable, inject } from "inversify";
-import { interfaces, TYPE, controller, httpGet, InversifyKoaServer } from "inversify-koa-utils";
+import { interfaces, TYPE, controller, httpGet, httpPost, InversifyKoaServer } from "inversify-koa-utils";
 const provideThrowable = (identifier, name) => {
   return fluentProvide(identifier)
     .whenTargetNamed(name)
@@ -23,6 +23,7 @@ export {
   TYPE,
   controller,
   httpGet,
+  httpPost,
   inject,
   injectable,
   provideThrowable,

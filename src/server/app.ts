@@ -1,3 +1,4 @@
+import * as Koa from 'koa';
 import { configure } from 'log4js';
 import 'reflect-metadata';
 import './config/ioc/inversify.config';
@@ -16,7 +17,7 @@ container.load(buildProviderModule());
 const server = new InversifyKoaServer(container);
 server.setConfig(preConfig);
 server.setErrorConfig(preErrConfig);
-const app = server.build();
+const app: Koa = server.build();
 app.listen(basic.port, () => {
   console.log(`app started at ${basic.port}`);
 });

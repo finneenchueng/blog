@@ -25,4 +25,11 @@ export default class PageController implements interfaces.Controller {
     console.log('result:', result)
     ctx.body = await ctx.render('index', { data: result.email });
   }
+  @httpGet('page/sse')
+  private async sse(
+    ctx: Router.IRouterContext,
+    next: () => Promise<any>
+  ): Promise<any> {
+    ctx.body = await ctx.render('sse', { data: 'sse---demo' });
+  }
 }

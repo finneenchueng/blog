@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>MyDreamApp</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  
+<body>
+  
+  <div id="example">[[data]]</div>
+  <script>
+    var source = new EventSource('/api/sse/connecttime', { withCredentials: true });
+    // var source = new EventSource('http://127.0.0.1:3300/stream');
+    // withCredentials for cross domain
+    // var source = new EventSource('/json/data/connecttime',  { withCredentials: true });
+    var div = document.getElementById('example');
+    
+    source.onopen = function (event) {
+      div.innerHTML += '<p>Connection open ...</p>';
+    };
+    
+    source.onerror = function (event) {
+      div.innerHTML += '<p>Connection close.</p>';
+    };
+    
+    source.addEventListener('connecttime', function (event) {
+      div.innerHTML += ('<p>Start time: ' + event.data + '</p>');
+    });
+    
+    source.onmessage = function (event) {
+      div.innerHTML += ('<p>Ping: ' + event.data + '</p>');
+    };
+    
+    //source.close()
+  </script>
+</body>
+</html>
