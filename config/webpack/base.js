@@ -3,6 +3,8 @@ const { VueLoaderPlugin } = require('vue-loader');
 const CopyPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
+// https://blog.csdn.net/smallsfe/article/details/54917185
+// https://github.com/miaomiaozhou/vue2-cli
 module.exports = {
     entry: {
         app: path.resolve(__dirname, '../../src/web/entry/app.ts'),

@@ -1,8 +1,8 @@
-<div class="f-header-box ">
+<div class="f-header-box">
     <div class="weui-flex">
         <div class="weui-flex__item head-logo-item">
           <a href="javascript:;" class="head-logo">
-            <img src="../../assets/logo.png" />
+            <img src="@/assets/images/logo.png" />
           </a>
         </div>
     </div>
@@ -14,7 +14,7 @@
         <!-- <MenuList :menu-data="menu_list"></MenuList> -->
         <div class="weui-flex">
           <div class="weui-flex__item"  v-for="(item,index) in menu_list" v-bind:key="index">
-            <a  :href="getTargetPath(item.target)" :data-index="index"  class="title-box" :class="{'active': (m_index==index)}" @click="toggleRoute">{{item.text}}</a>
+            <a   :data-index="index"  class="title-box" :class="{'active': (m_index==index)}" >{{item.text}}</a>
           </div>
 
         </div>

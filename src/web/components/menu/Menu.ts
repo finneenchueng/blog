@@ -12,6 +12,8 @@ export default defineComponent({
         }
 
         return {
+            isPc: true,
+            menu_list: [],
             countState: clickStore.getState(),
             isInitialized: clickStore.getIsInitialized(),
             inc
