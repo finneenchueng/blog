@@ -25,16 +25,6 @@ module.exports = merge(baseWebpackConfig, {
             //     }
             // },
             {
-                test: /\.css$/,
-                use: [
-                  {
-                    loader: MiniCssExtractPlugin.loader,
-                    options: { hmr: false }
-                  },
-                  'css-loader'
-                ]
-            },
-            {
                 test: /\.(png|jpg|gif)([\?]?.*)$/,
                 use: {
                     loader: 'url-loader',

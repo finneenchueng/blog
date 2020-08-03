@@ -1,43 +1,64 @@
-@keyframes action_skew{
-    0%{opacity: 0;}
-    50%{ opacity: 0.2;}
-    100%{ opacity: 1;}
-}
-@keyframes action_skewOut{
-    0%{opacity: 1;}
-    50%{opacity: 0.2;}
-    100%{opacity: 0;}
+@keyframes action_skew {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0.2;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
 
-.f-header-box{
-  .title-box{
+@keyframes action_skewOut {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.2;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.f-header-box {
+  .title-box {
     height: 48px;
     line-height: 48px;
-    width:150px;
-    margin:0 20px;
+    width: 150px;
+    margin: 0 20px;
     position: relative;
-    color:#a6a6a6;
+    color: #a6a6a6;
     // overflow: hidden;
     display: inline-block;
-    background-color:#fafaf5;
-    border-left:2px solid #b8b8b8;
+    background-color: #fafaf5;
+    border-left: 2px solid #b8b8b8;
     text-align: center;
     text-decoration: none;
-    &:before{
-        border-bottom: 24px solid #a6a6a6;
-        border-right: 24px solid transparent;
-        top: 24px;
-        right: -16px;
-        transform:rotate(28deg);
+
+    &:before {
+      border-bottom: 24px solid #a6a6a6;
+      border-right: 24px solid transparent;
+      top: 24px;
+      right: -16px;
+      transform: rotate(28deg);
     }
-    &:after{
-        border-bottom: 36px solid #a6a6a6;
-        border-right: 36px solid transparent;
-        top: 32px;
-        right: -2px;
-        transform:rotate(140deg);
+
+    &:after {
+      border-bottom: 36px solid #a6a6a6;
+      border-right: 36px solid transparent;
+      top: 32px;
+      right: -2px;
+      transform: rotate(140deg);
     }
-    &:before,&:after{
+
+    &:before,
+    &:after {
       content: '';
       height: 0;
       width: 0;
@@ -49,31 +70,42 @@
       // animation-iteration-count: 1; /*动画次数*/
       // animation-delay: 0s; /*延迟时间*/
     }
-    &:hover{
-      color:#333;
-      &:before,&:after{
-        animation-name: action_skewOut; /*动画名称*/
-        animation-duration: 0.5s; /*动画持续时间*/
-        animation-iteration-count: 1; /*动画次数*/
-        animation-delay: 0s; /*延迟时间*/
+
+    &:hover {
+      color: #333;
+
+      &:before,
+      &:after {
+        animation-name: action_skewOut;
+        /*动画名称*/
+        animation-duration: 0.5s;
+        /*动画持续时间*/
+        animation-iteration-count: 1;
+        /*动画次数*/
+        animation-delay: 0s;
+        /*延迟时间*/
         opacity: 0;
       }
 
     }
 
-    &.active{
-      color:#854268;
+    &.active {
+      color: #854268;
       box-shadow: 5px 5px 5px #b8b8b8;
-      &:before,&:after{
+
+      &:before,
+      &:after {
         display: none;
       }
     }
 
   }
-  .head-logo-item{
+
+  .head-logo-item {
     text-align: center;
-    padding:40px 0 10px 0;
-    .head-logo{
+    padding: 40px 0 10px 0;
+
+    .head-logo {
       display: inline-block;
     }
   }

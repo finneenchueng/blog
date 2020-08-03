@@ -1,6 +1,6 @@
 <template src='./App.html'></template>
 <script src='./App.ts' lang='ts'></script>
-<style src='./App.css' lang='css'></style>
+<style src='./App.less' lang='less'></style>
 
 <!--
 <template>

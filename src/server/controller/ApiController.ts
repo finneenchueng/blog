@@ -9,6 +9,8 @@ import {
   provideThrowable
 } from '../config/ioc';
 // import { Model } from '../model/User';
+
+
 @controller('/api')
 @provideThrowable(TYPE.Controller, 'ApiController')
 export default class ApiController implements interfaces.Controller {

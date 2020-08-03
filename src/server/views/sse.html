@@ -10,6 +10,7 @@
   
   <div id="example">[[data]]</div>
   <script>
+    // IE not supported
     var source = new EventSource('/api/sse/connecttime', { withCredentials: true });
     // var source = new EventSource('http://127.0.0.1:3300/stream');
     // withCredentials for cross domain

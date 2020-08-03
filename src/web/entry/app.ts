@@ -1,4 +1,5 @@
 import { createApp } from 'vue';
+import '../assets/less/index.less';
 import AppVue from '@/page/app/App.vue';
 import appRouter from './router/app';
 // import Demo from '@/page/demo/Demo.vue';
