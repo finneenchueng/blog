@@ -10,7 +10,7 @@ import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router
   3、memoryRouter: Without the history stored, all routing processes are stored in memory and cannot be moved forward or backward, because there is no change in the address bar
 */
 
-const router = createRouter({
+const appRouter = createRouter({
   history: createWebHashHistory(),
   routes: [
     {
@@ -28,4 +28,4 @@ const router = createRouter({
   ]
 })
 
-export default router
+export default appRouter

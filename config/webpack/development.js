@@ -28,16 +28,16 @@ module.exports = merge(baseWebpackConfig, extraAction({
     // },
     module: {
         rules: [
-            // {
-            //     test: /\.css$/,
-            //     use: [
-            //       {
-            //         loader: MiniCssExtractPlugin.loader,
-            //         options: { hmr: true }
-            //       },
-            //       'css-loader'
-            //     ]
-            // },
+            {
+                test: /\.css$/,
+                use: [
+                  {
+                    loader: MiniCssExtractPlugin.loader,
+                    options: { hmr: true }
+                  },
+                  'css-loader'
+                ]
+            },
             {
                 test: /\.(png|jpg|gif)([\?]?.*)$/,
                 use: {
