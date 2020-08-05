@@ -11,6 +11,7 @@ import { createRouter, createWebHistory, createWebHashHistory, Router } from 'vu
 */
 // https://ssr.vuejs.org/zh/guide/routing.html#%E4%BD%BF%E7%94%A8-vue-router-%E7%9A%84%E8%B7%AF%E7%94%B1
 // https://juejin.im/post/6847902222747975688
+// /blog/node_modules/vue-router/README.md
 const appRouter = createRouter({
   history: createWebHashHistory(),
   routes: [
