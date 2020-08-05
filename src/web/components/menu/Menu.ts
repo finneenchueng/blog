@@ -1,6 +1,7 @@
 import { defineComponent, onBeforeMount } from 'vue';
 import { clickStore } from '../../store/click-store';
 import { menuList } from '@/utils/constant';
+import { router } from '@/entry/router/appRouter';
 
 export default defineComponent({
     setup(props, context) {
@@ -29,7 +30,19 @@ export default defineComponent({
         }
     },
     methods: {
-
+        toggleRoute(e: MouseEvent) {
+            console.log(this)
+            // console.log(this.$route)
+            return;
+            const ele = e.target as HTMLAnchorElement;
+            const i = ele.getAttribute("data-index") as string;
+            const index = Number.parseInt(i);
+            console.log(this.menu_list[index].routePath)
+            router.push(this.menu_list[index].routePath);
+            // this.$router.push(this.menu_list[_i].routePath);
+            // this.$store.commit('markMenuItem', _i);
+        },
+        
         
     },
     mounted() {
