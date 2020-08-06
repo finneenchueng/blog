@@ -5,6 +5,12 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const baseWebpackConfig = require('./base');
 
 module.exports = merge(baseWebpackConfig, {
+    entry: {
+        admin: path.resolve(__dirname, '../../src/web/entry/client/admin.ts'),
+        app: path.resolve(__dirname, '../../src/web/entry/client/app.ts'),
+        'server-admin': path.resolve(__dirname, '../../src/web/entry/server/admin.ts'),
+        'server-app': path.resolve(__dirname, '../../src/web/entry/server/app.ts'),
+    },
     output: {
         path: path.resolve(__dirname, '../../dist/assets'),
         publicPath: '/blog/',
@@ -24,16 +30,16 @@ module.exports = merge(baseWebpackConfig, {
             //         cacheDirectory: true
             //     }
             // },
-            {
-                test: /\.css$/,
-                use: [
-                  {
-                    loader: MiniCssExtractPlugin.loader,
-                    options: { hmr: false }
-                  },
-                  'css-loader'
-                ]
-            },
+            // {
+            //     test: /\.css$/,
+            //     use: [
+            //       {
+            //         loader: MiniCssExtractPlugin.loader,
+            //         options: { hmr: false }
+            //       },
+            //       'css-loader'
+            //     ]
+            // },
             {
                 test: /\.(png|jpg|gif)([\?]?.*)$/,
                 use: {
@@ -55,9 +61,26 @@ module.exports = merge(baseWebpackConfig, {
     },
     plugins: [
         new HtmlWebpackPlugin({
+            title: 'Management Page',
+            template: path.resolve(__dirname, '../../src/web/template/index.html'),
+            filename: '../../dist/views/admin.html',
+            inject: true,
+            minify: {
+                removeComments: true,
+                collapseWhitespace: true,
+                removeAttributeQuotes: true
+                // more options:
+                // https://github.com/kangax/html-minifier#options-quick-reference
+            },
+            chunks: ['admin', 'common'],
+            // necessary to consistently work with multiple chunks via CommonsChunkPlugin
+            chunksSortMode: 'manual'
+        }),
+
+        new HtmlWebpackPlugin({
             title: 'Home Page',
             template: path.resolve(__dirname, '../../src/web/template/index.html'),
-            filename: '../../dist/views/entry.html',
+            filename: '../../dist/views/app.html',
             inject: true,
             minify: {
                 removeComments: true,
@@ -70,7 +93,7 @@ module.exports = merge(baseWebpackConfig, {
             // necessary to consistently work with multiple chunks via CommonsChunkPlugin
             chunksSortMode: 'manual'
         }),
-
+        
         new MiniCssExtractPlugin({
             filename: 'css/[name].[hash].css',
             // chunkFilename: 'css/[id].[hash:8].css',

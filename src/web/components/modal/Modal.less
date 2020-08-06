@@ -1,0 +1,70 @@
+.modal {
+    /*display: block;*/
+}
+/*.modal-transition {
+    opacity:0;
+    transition: opacity 1.2s linear;
+}*/
+.modal-leave {
+    /* 样式没什么用，但可以让根标签的transitionEnd生效，以去掉modal-leave */
+    border-radius: 1px !important;
+}
+/*.modal-transition .weui-dialog, .modal-transition .weui-mask {
+    transition: all .5s ease;
+}
+.modal-enter .weui-dialog, .modal-leave .weui-dialog {
+    opacity: 0;
+    transform: translateY(-30%);
+}
+.modal-enter .weui-mask, .modal-leave .weui-mask {
+    opacity: 0;
+}*/
+.modal-full{
+  max-width: none;
+  width:90%;
+}
+.dialog-chk{
+  position: relative;
+  display: flex;
+  z-index: 2000;
+  width:100%;
+  height: 100%;
+
+}
+.dialog-unchk{
+  display: none;
+}
+@-webkit-keyframes fadeInAction {
+  0% {
+    opacity: 0; /*初始状态 透明度为0*/
+  }
+  50% {
+    opacity: 0.5; /*中间状态 透明度为0*/
+  }
+  100% {
+    opacity: 1; /*结尾状态 透明度为1*/
+  }
+}
+.fade-in{
+  animation-name: fadeInAction; /*动画名称*/
+  animation-duration: 0.4s; /*动画持续时间*/
+  animation-iteration-count: 1; /*动画次数*/
+  animation-delay: 0s; /*延迟时间*/
+}
+@-webkit-keyframes fadeOutAction {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.fade-out{
+  animation-name: fadeOutAction; /*动画名称*/
+  animation-duration: 0.4s; /*动画持续时间*/
+  animation-iteration-count: 1; /*动画次数*/
+  animation-delay: 0s; /*延迟时间*/
+}

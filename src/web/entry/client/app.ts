@@ -1,9 +1,10 @@
-import { createApp, hydrate } from 'vue';
-import '../assets/less/index.less';
+import { createApp } from 'vue';
+import '@/assets/less/index.less';
 import * as fastclick from 'fastclick';
 import * as infiniteScroll from 'vue-infinite-scroll';
 import AppVue from '@/page/app/App.vue';
-import appRouter from './router/appRouter';
+import appRouter from '@/router/appRouter';
+import { RouteLocationMatched } from 'vue-router';
 // hydrate: RootHydrateFunction
 // (vnode: VNode<Node, Element>, container: Element) => void
 const InfiniteScroll = infiniteScroll.InfiniteScroll;
@@ -17,9 +18,12 @@ appRouter.isReady().then(()=>{
     // console.log(appRouter.currentRoute)
     // console.log(appRouter.currentRoute.value)
     // console.log(appRouter.currentRoute.value.matched)
-    // appRouter.currentRoute.value.matched.flatMap(record =>
-    //     Object.values(record.components)
-    // )
+    (appRouter.currentRoute.value.matched as any).flatMap((record: RouteLocationMatched) =>{
+        console.log('sdf:', record)
+        console.log('components:', Object.values(record.components))
+        return  Object.values(record.components);
+
+    })
 });
 
 // export const app = App;

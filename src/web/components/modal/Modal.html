@@ -1,0 +1,21 @@
+<div class="dialog-unchk"  :transition="transition">
+    <div class="weui-mask" @click.self="clickMask"></div>
+    <div class="weui-dialog" :class="modalClass" ref="dialog">
+        <div class="weui-dialog__hd">
+          <!-- <strong class="weui-dialog__title">弹窗标题</strong> -->
+          <slot name="header">
+            {{title}}
+          </slot>
+        </div>
+        <div class="weui-dialog__bd" style="text-align: initial;">
+          <!-- 弹窗内容，告知当前状态、信息和解决方法，描述文字尽量控制在三行内 -->
+          <slot name="modal-body"></slot>
+        </div>
+        <div class="weui-dialog__ft">
+            <slot name="footer">
+                <a href="javascript:;" :class="getCancelBtncls()" @click="cancel">{{cancelText}}</a>
+                <a href="javascript:;" :class="okClass" @click="ok">{{okText}}</a>
+            </slot>
+        </div>
+    </div>
+</div>

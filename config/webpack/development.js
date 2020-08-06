@@ -18,6 +18,10 @@ module.exports = merge(baseWebpackConfig, extraAction({
     loader: 'tslint-loader',
     exclude: /node_modules/
 },{
+    entry: {
+        admin: path.resolve(__dirname, '../../src/web/entry/client/admin.ts'),
+        app: path.resolve(__dirname, '../../src/web/entry/client/app.ts'),
+    },
     output: {
         path: path.join(__dirname, '../../dist'),
         publicPath: '/',
@@ -49,11 +53,18 @@ module.exports = merge(baseWebpackConfig, extraAction({
     },
     plugins: [
         new HtmlWebpackPlugin({
+            title: 'Mng Page',
+            template: path.resolve(__dirname, '../../src/web/template/index.html'),
+            filename: 'admin.html',
+            chunks: ['admin'],
+        }),
+        new HtmlWebpackPlugin({
             title: 'Home Page',
             template: path.resolve(__dirname, '../../src/web/template/index.html'),
             filename: 'index.html',
             chunks: ['app'],
         }),
+        
         new webpack.HotModuleReplacementPlugin(),
         new MiniCssExtractPlugin({
             filename: '[name].css'

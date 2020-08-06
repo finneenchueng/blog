@@ -1,0 +1,43 @@
+<div class="login-box">
+    <div class="container">
+        <div class="page__bd" ref="post_form">
+            <modal :show.sync="modalOpt.show" @ok="modalConfirm" :extendClass="modalOpt.cancelClass" title="">
+                <div slot="modal-body">{{modalOpt.msg}}</div>
+            </modal>
+            <div class="weui-cells__title">登录选项</div>
+            <div class="weui-cells__title">用户名</div>
+            <div class="weui-cells">
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                        <input class="weui-input" type="text" name="usrname" placeholder="请输入用户名"/>
+                    </div>
+                </div>
+            </div>
+            <div class="weui-cells__title">密码</div>
+            <div class="weui-cells">
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                        <input class="weui-input" type="password" name="usrpwd" placeholder="请输入密码"/>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="weui-cells weui-cells_form">
+
+                    <div class="weui-cell weui-cell_vcode">
+                        <div class="weui-cell__hd"><label class="weui-label">验证码</label></div>
+                        <div class="weui-cell__bd">
+                            <input class="weui-input" type="number" placeholder="请输入验证码"/>
+                        </div>
+                        <div class="weui-cell__ft">
+                            <img class="weui-vcode-img" src="../assets/vcode.jpg" />
+                        </div>
+                    </div>
+                </div> -->
+
+            <div class="weui-btn-area">
+                <a class="weui-btn weui-btn_primary" href="javascript:;" @click="doLogin">登录</a>
+            </div>
+            <FooterBlock :isFixBottom="true"></FooterBlock>
+        </div>
+    </div>
+</div>

@@ -1,6 +1,6 @@
 import { defineComponent, onBeforeMount } from 'vue';
-import { commonStore } from '../../store/common-store';
-import { router } from '@/entry/router/appRouter';
+import { commonStore } from '@/store/common-store';
+import { router } from '@/router/appRouter';
 import { $t } from '@/utils/locale';
 
 export default defineComponent({
