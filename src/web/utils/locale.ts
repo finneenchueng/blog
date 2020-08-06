@@ -37,6 +37,7 @@ export function setLanguage(lan: string){
 }
 
 export function $t(key: string, option?: IMessage){
+    return key;
     const i18n: II18nOutput = getI18n() as II18nOutput;
     return i18n.$t(key, option);
 }

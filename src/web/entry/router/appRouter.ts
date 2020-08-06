@@ -17,7 +17,7 @@ const appRouter = createRouter({
   routes: [
     {
         path: '/',
-        component: () => import(/* webpackChunkName: "r_comment" */ '@/components/articleview/ArticleView.vue')
+        component: () => import(/* webpackChunkName: "r_view" */ '@/components/articleview/ArticleView.vue')
     },
     {
         path: '/archives',

@@ -1,6 +1,4 @@
 import { createApp, hydrate } from 'vue';
-import { initLanguage } from '@/utils/locale';
-initLanguage();
 import '../assets/less/index.less';
 import * as fastclick from 'fastclick';
 import * as infiniteScroll from 'vue-infinite-scroll';
@@ -16,9 +14,9 @@ App.use(appRouter);
 App.use((InfiniteScroll || infiniteScroll));
 appRouter.isReady().then(()=>{
     App.mount('#app');
-    console.log(appRouter.currentRoute)
-    console.log(appRouter.currentRoute.value)
-    console.log(appRouter.currentRoute.value.matched)
+    // console.log(appRouter.currentRoute)
+    // console.log(appRouter.currentRoute.value)
+    // console.log(appRouter.currentRoute.value.matched)
     // appRouter.currentRoute.value.matched.flatMap(record =>
     //     Object.values(record.components)
     // )

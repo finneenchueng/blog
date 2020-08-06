@@ -2,7 +2,7 @@
     <div class="weui-flex">
         <div class="weui-flex__item head-logo-item">
           <a href="/" class="head-logo">
-            <img src="@/assets/images/logo.png" />
+            <!-- <img src="@/assets/images/logo.png" /> -->
           </a>
         </div>
     </div>
@@ -13,8 +13,8 @@
       <div class="weui-flex__item">
         <!-- <MenuList :menu-data="menu_list"></MenuList> -->
         <div class="weui-flex">
-          <div class="weui-flex__item"  v-for="(item,index) in menu_list" v-bind:key="index">
-            <a  href='javascript:;' @click="toggleRoute" :data-index="index"  class="title-box" :class="{'active': (m_index==index)}" >{{item.text}}</a>
+          <div class="weui-flex__item"  v-for="(item,index) in globalState.menuList" v-bind:key="index">
+            <a  href='javascript:;' @click="toggleRoute(index, item.target)"  class="title-box" :class="{'active': (globalState.currentIndex==index)}" >{{$t(item.textKey)}}</a>
           </div>
 
         </div>
@@ -26,7 +26,7 @@
 
     <div class="weui-flex" v-else>
       <div class="weui-flex__item"  v-for="(item,index) in menu_list" v-bind:key="index">
-        <a  :href="item.target" :data-index="index"  class="title-box" :class="{'active': (m_index==index)}" @click="toggleRoute">{{item.text}}</a>
+        <a  :href="item.target" class="title-box" :class="{'active': (commonState.currentIndex==index)}" @click="toggleRoute">{{item.text}}</a>
       </div>
     </div>
 

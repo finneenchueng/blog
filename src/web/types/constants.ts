@@ -1,1 +1,2 @@
+export const COMMON_STORE_NAME = "COMMON_STORE";
 export const CLICK_STORE_NAME = "CLICK_STORE";
