@@ -28,6 +28,8 @@ appRouter.isReady().then(()=>{
 
 // export const app = App;
 
+// https://www.cnblogs.com/wuweiblogs/p/12918968.html
+// https://segmentfault.com/q/1010000016408993 puppeteer
 //https://medium.com/javascript-in-plain-english/a-first-look-at-vue-router-in-vue3-253bc61b2cf5
 // createApp(Demo).mount('#app');
 
