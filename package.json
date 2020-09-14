@@ -19,7 +19,7 @@
     "server:watch": "yarn run server:dev && yarn run server:start"
   },
   "dependencies": {
-    "@types/mongodb": "^3.5.25",
+    "@types/mongodb": "^3.5.27",
     "assert": "^2.0.0",
     "co": "^4.6.0",
     "cross-env": "^7.0.2",
@@ -35,7 +35,7 @@
     "koa2-connect-history-api-fallback": "^0.1.2",
     "lodash": "^4.17.15",
     "log4js": "^6.3.0",
-    "mongodb": "^3.5.9",
+    "mongodb": "^3.6.1",
     "node-fetch": "^2.6.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",

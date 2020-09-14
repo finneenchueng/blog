@@ -12,15 +12,15 @@ const FastClick = fastclick.FastClick;
 const App = createApp(AppVue);
 (FastClick || fastclick).attach(document.body);
 App.use(appRouter);
-App.use((InfiniteScroll || infiniteScroll));
 appRouter.isReady().then(()=>{
+    App.use((InfiniteScroll || infiniteScroll));
     App.mount('#app');
     // console.log(appRouter.currentRoute)
     // console.log(appRouter.currentRoute.value)
     // console.log(appRouter.currentRoute.value.matched)
     (appRouter.currentRoute.value.matched as any).flatMap((record: RouteLocationMatched) =>{
-        console.log('sdf:', record)
-        console.log('components:', Object.values(record.components))
+        // console.log('sdf:', record)
+        // console.log('components:', Object.values(record.components))
         return  Object.values(record.components);
 
     })

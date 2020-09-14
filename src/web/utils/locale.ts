@@ -7,9 +7,9 @@ import zhCN from '@/assets/locales/zh-CN';
 
 export function initLanguage(){
     const lan =  window.navigator.language;
-    const language = lan.includes('-')? lan.split('-')[0] : 'en';
+    const language = lan.includes('-') ? lan.split('-')[0] : 'en';
     provideI18n({
-        locale: ref(language),
+        locale: ref('en' || language),
         messages: {
           en: enUS,
           zh: zhCN
