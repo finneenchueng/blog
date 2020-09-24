@@ -1,4 +1,5 @@
 import axios from 'axios'
+import * as qs from 'qs';
 
 // 创建一个axios实例
 const reqInstance = axios.create({
@@ -11,6 +12,10 @@ const reqInstance = axios.create({
 reqInstance.interceptors.request.use(config => {
   // 在发送请求之前做某事，比如说 设置token
   // config.headers['token'] = 'token';
+  
+  config.paramsSerializer = params => {
+    return qs.stringify(params, { indices: false });
+  }
   return config;
 }, error => {
   // 请求错误时做些事
